@@ -39,7 +39,8 @@ public class WxServlet extends HttpServlet {
             try {
                 Map<String,String> map=MessageHandlerUtil.parseXml(request);
                 System.out.println("开始构造消息");
-                result=MessageHandlerUtil.buildXml(map);
+//                result=MessageHandlerUtil
+                result=MessageHandlerUtil.buildResponseMessage(map);
                 System.out.println(result);
                 if(result.equals("")){
                     result="未正确相应";
