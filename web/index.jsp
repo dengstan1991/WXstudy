@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>$微信学习$</title>
   </head>
   <body>
-  $END$
+  微信学习
   </body>
 </html>
