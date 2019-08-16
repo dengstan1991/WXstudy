@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  * Created by xdp on 2016/1/25.
@@ -23,8 +24,31 @@ public class WxServlet extends HttpServlet {
      */
     private final String TOKEN = "stan";
 
+    /**
+     * 处理微信服务器发送的post请求
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            System.out.println("请求进入");
+            String result="";
+            try {
+                Map<String,String> map=MessageHandlerUtil.parseXml(request);
+                System.out.println("开始构造消息");
+                result=MessageHandlerUtil.buildXml(map);
+                System.out.println(result);
+                if(result.equals("")){
+                    result="未正确相应";
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                System.out.println("发生异常："+e.getMessage());
+            }
+            response.getWriter().println(result);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
